@@ -1,0 +1,11 @@
+docker login
+docker build  fitnise_bot.
+docker run -it fitnise_bot .
+pip freeze req.txt
+pip install -r req.txt
+docker exec -it fitnise_bot psql -U postgres
+create database users;
+docker tag fitnise_bot polat396/fitnise_bot
+docker push polat396/fitnise_bot
+docker run -it --name my_cont fitnise_bot
+docker compose up
