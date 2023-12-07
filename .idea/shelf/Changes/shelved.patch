@@ -1,0 +1,61 @@
+Index: javob_05
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/javob_05 b/javob_05
+new file mode 100644
+--- /dev/null	(date 1701957946236)
++++ b/javob_05	(date 1701957946236)
+@@ -0,0 +1,11 @@
++docker login
++docker build fitnise_bot .
++docker run -it fitnise_bot .
++pip freeze req.txt
++pip install -r req.txt
++docker exec -it fitnise_bot psql -U postgres
++create database users;
++docker tag fitnise_bot polat396/fitnise_bot
++docker push polat396/fitnise_bot
++docker run -it --name cont_my fitnise_bot
++docker compose up
+\ No newline at end of file
+Index: docker-compose.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/docker-compose.yml b/docker-compose.yml
+new file mode 100644
+--- /dev/null	(date 1701957940564)
++++ b/docker-compose.yml	(date 1701957940564)
+@@ -0,0 +1,28 @@
++version: '3.11'
++
++
++services:
++  bot:
++    build: .
++    restart: always
++    container_name: exxam_bott
++    environment:
++      BOT_TOKEN: 6407054173:AAGLVOeIDhxDCT606vluqU1wBu8S_v6yut4
++    depends_on:
++      - pg
++    command: python3 main.py
++
++
++  pg:
++    image: postgres
++    restart: always
++    container_name: exxam_bott
++    environment:
++      POSTGRES_PASSWORD: 1
++    ports:
++      - "5432:5432"
++    volumes:
++      - pg_data:/var/lib/postgresql/data/
++
++volumes:
++  pg_data:
+\ No newline at end of file

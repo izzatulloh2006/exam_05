@@ -1,39 +1,30 @@
+
+import smtplib
+import ssl
 import time
-#
+
 from celery import Celery
 
-app1 = Celery('hello', broker='pyamqp://quest@localhost/')
+app = Celery('hello', broker='pyamqp://guest@localhost/')
+
+port = 465
+smtplib_server = "smtp.gmail.com"
+from_email = "fayzullaxojaevi@gmail.com"
+reciever_email = input("Email kiriting : ").split()
+password = "cfuqxlwlppxdnkb"
+message = "Hello  !!!"
 
 
-@app1.task
+@app.task
 def hello():
-    print("hello start")
-    time.sleep(20)
-    return 'hello word'
+    for i in reciever_email:
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtplib_server, port, context=context) as server:
+            server.login(from_email, password)
+            time.sleep(10)
+            return server.sendmail(from_email, i, message)
 
 
-
-
-# @app.task
-# def hello():
-#     time.sleep(20)
-#     return 'hello world'
-#
-# @app.task
-# def function1():
-#     time.sleep(10)
-#
-# @app.task
-# def function1():
-#     print("function1 started")
-#     time.sleep(10)
-#     return 'function1 funish'
-#
-# @app.task
-# def function2():
-#     print("function2 started")
-#     time.sleep(10)
-#     return 'function2 funish'
 
 
 

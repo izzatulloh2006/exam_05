@@ -7,9 +7,8 @@ from aiogram.types import Message
 from aiogram.filters.command import Command
 from aiogram.enums import ParseMode
 from aiogram import Bot, Dispatcher
-# from aiogram.utils.markdown import hbold
-from fitnise_bot.button import started_handler, start1_handler,oy_handler,hafta_handler
-# from fitnise_bot.inline_button import inline_number
+from savol_2_bot.button import started_handler ,start1_handler,oy_handler,hafta_handler
+
 
 
 TOKEN = '6631400339:AAGF3VX86JigeR8zYpbVyUUWROEkU8hA5Tw'
